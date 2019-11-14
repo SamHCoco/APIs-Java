@@ -7,18 +7,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+
 public class Connection {
 
-    private final String URI;
-    private final String API_KEY;
     private HttpURLConnection connection;
     private BufferedReader reader;
     private StringBuffer responseData;
 
-    public Connection(String URI, String API_KEY){
-        this.URI = URI;
-        this.API_KEY = API_KEY;
-    }
 
     public HttpURLConnection getConnection(){
         return connection;
@@ -26,7 +21,7 @@ public class Connection {
 
     public String query(String queryString){
         try {
-            URL url = new URL(URI + queryString + "&appid=" + API_KEY);
+            URL url = new URL(queryString);
 
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
