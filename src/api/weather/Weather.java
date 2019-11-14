@@ -20,23 +20,22 @@ public class Weather implements Runnable {
     }
 
     public void run(){
-        // Example - https://api.openweathermap.org/data/2.5/weather?q=london,uk&appid=c38b28e71f71ffadffd8a9125ee2871a
-        try(Scanner scanner = new Scanner(System.in)){
-            connection = new Connection(URI, API_KEY);
-            while(true){
-                System.out.println("************************************************************************");
-                System.out.println("Enter UK city name for a weather report: ");
-                String input = scanner.next();
+    // Example - https://api.openweathermap.org/data/2.5/weather?q=london,uk&appid=c38b28e71f71ffadffd8a9125ee2871a
+        connection = new Connection(URI, API_KEY);
+        Scanner scanner = new Scanner(System.in);
+        while(true){
+            System.out.println("************************************************************************");
+            System.out.println("Enter UK city name for a weather report: ");
+            String input = scanner.next();
 
-                if(input.equals("quit")){
-                    connection.getConnection().disconnect();
-                    return;
-                }
-
-                String queryString = "?q=" + input + "," + COUNTRY;
-                String response = connection.query(queryString);
-                printWeatherData(response);
+            if(input.equals("quit")){
+                connection.getConnection().disconnect();
+                return;
             }
+
+            String queryString = "?q=" + input + "," + COUNTRY;
+            String response = connection.query(queryString);
+            printWeatherData(response);
         }
     }
 }
