@@ -37,6 +37,7 @@ public class Connection {
 
             if(httpStatus == 200){
                 reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                responseData = new StringBuffer();
                 String line;
 
                 while((line = reader.readLine()) != null){
