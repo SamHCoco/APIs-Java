@@ -19,9 +19,15 @@ public class Connection {
         return connection;
     }
 
-    public String query(String queryString){
+    /**
+     * Performs a 'GET' request to the specified web service API and returns the response
+     * as a string.
+     * @param apiURL The URL of the desired API, along with any relevant query parameters.
+     * @return Response from the specified API as a string.
+     */
+    public String query(String apiURL){
         try {
-            URL url = new URL(queryString);
+            URL url = new URL(apiURL);
 
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
@@ -49,7 +55,6 @@ public class Connection {
         } catch(IOException e){
             System.out.println("I/O ERROR - CONNECTION CLASS - query(): " + e.getMessage());
         }
-
         return null;
     }
 }
